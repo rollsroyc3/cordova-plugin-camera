@@ -207,13 +207,13 @@ public class CameraLauncher extends CordovaPlugin implements MediaScannerConnect
         File cache = null;
 
         // SD Card Mounted
-        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-            cache = cordova.getActivity().getExternalCacheDir();
-        }
+        // if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+        //     cache = cordova.getActivity().getExternalCacheDir();
+        // }
         // Use internal storage
-        else {
-            cache = cordova.getActivity().getCacheDir();
-        }
+        //else {
+            cache = cordova.getActivity().getFilesDir();
+        //}
 
         // Create the cache directory if it doesn't exist
         cache.mkdirs();
@@ -822,7 +822,7 @@ public class CameraLauncher extends CordovaPlugin implements MediaScannerConnect
             return 0;
         }
     }
-    
+
     /**
      * Write an inputstream to local disk
      *
