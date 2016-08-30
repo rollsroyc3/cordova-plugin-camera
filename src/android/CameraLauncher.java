@@ -212,7 +212,7 @@ public class CameraLauncher extends CordovaPlugin implements MediaScannerConnect
         // }
         // Use internal storage
         //else {
-            cache = cordova.getActivity().getCacheDir();
+            cache = cordova.getActivity().getFilesDir();
         //}
 
         // Create the cache directory if it doesn't exist
@@ -332,6 +332,15 @@ public class CameraLauncher extends CordovaPlugin implements MediaScannerConnect
             throw new IllegalArgumentException("Invalid Encoding Type: " + encodingType);
         }
 
+        //http://stackoverflow.com/questions/7720383/camera-intent-not-saving-photo
+        //Remove if exists, the file MUST be created using the lines below
+        File f = new File(getTempDirectoryPath(), fileName);
+        f.delete();
+
+        //Create new file
+        FileOutputStream fos = openFileOutput(fileName, this.cordova.getActivity().getApplicationContext().MODE_WORLD_WRITEABLE);
+        fos.close();
+        //Get reference to the file
         return new File(getTempDirectoryPath(), fileName);
     }
 
@@ -536,7 +545,7 @@ public class CameraLauncher extends CordovaPlugin implements MediaScannerConnect
                 // Double-check the bitmap.
                 if (bitmap == null) {
                     LOG.d(LOG_TAG, "I either have a null image path or bitmap");
-                    this.failPicture("Unable to create bitmap!" + sourcePath);
+                    this.failPicture("Unable to create bitmap!");
                     return;
                 }
 
