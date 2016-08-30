@@ -212,7 +212,7 @@ public class CameraLauncher extends CordovaPlugin implements MediaScannerConnect
         // }
         // Use internal storage
         //else {
-            cache = cordova.getActivity().getFilesDir();
+            cache = cordova.getActivity().getCacheDir();
         //}
 
         // Create the cache directory if it doesn't exist
