@@ -536,7 +536,7 @@ public class CameraLauncher extends CordovaPlugin implements MediaScannerConnect
                 // Double-check the bitmap.
                 if (bitmap == null) {
                     LOG.d(LOG_TAG, "I either have a null image path or bitmap");
-                    this.failPicture("Unable to create bitmap!");
+                    this.failPicture("Unable to create bitmap!" + sourcePath);
                     return;
                 }
 
